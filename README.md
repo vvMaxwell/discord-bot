@@ -33,6 +33,12 @@ A Python Discord bot with music playback, fun friend-group commands, and general
 - `/wouldyourather`
 - `/rate`
 
+### Deadlock
+
+- `/deadlocksearch <query>`
+- `/deadlockprofile <player name, account id, or Steam profile url>`
+- `/deadlockrecent <player name, account id, or Steam profile url>`
+
 ## Setup
 
 1. Create and activate a virtual environment.
@@ -56,5 +62,7 @@ python bot.py
 - Music playback uses `yt-dlp` to resolve audio streams.
 - `/play` can search YouTube and let you choose a result directly inside Discord, or it can play a pasted YouTube URL immediately.
 - Music commands are YouTube-focused right now.
+- Deadlock stats use [Deadlock API](https://deadlock-api.com/) player and leaderboard data.
+- Static decorative assets live under `assets/`.
 - Slash commands may take a short moment to appear globally the first time.
-- If you want to add more commands later, the code is split into cogs under `musicbot/cogs/`.
+- If you want to add more commands later, the code is split into cogs under `discordbot/cogs/`.

@@ -1,4 +1,4 @@
-from musicbot.main import main
+from discordbot.main import main
 
 
 if __name__ == "__main__":

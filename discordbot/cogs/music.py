@@ -4,33 +4,16 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 
-from musicbot.music import MusicStateStore, SearchResult, create_song, search_youtube_results
+from discordbot.music import MusicStateStore, SearchResult, create_song, search_youtube_results
 
 
 async def play_query_autocomplete(
     interaction: discord.Interaction,
     current: str,
 ) -> list[app_commands.Choice[str]]:
-    # Keep a lightweight autocomplete handler so clients with cached command metadata
-    # do not hit a signature mismatch while Discord refreshes the schema.
-    current = current.strip()
-    if not current:
-        return []
-
-    suggestions = [
-        current,
-        f"{current} official audio",
-        f"{current} lyrics",
-        f"{current} live",
-    ]
-    seen: set[str] = set()
-    choices: list[app_commands.Choice[str]] = []
-    for suggestion in suggestions:
-        if suggestion in seen:
-            continue
-        seen.add(suggestion)
-        choices.append(app_commands.Choice(name=suggestion[:100], value=suggestion))
-    return choices[:5]
+    # Intentionally return no inline suggestions. We keep the autocomplete handler
+    # attached only to stay compatible with clients that still cache old metadata.
+    return []
 
 
 class SearchChoiceSelect(discord.ui.Select):

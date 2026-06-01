@@ -29,7 +29,7 @@ class General(commands.Cog):
         )
         embed.add_field(
             name="General",
-            value="/ping, /userinfo, /serverinfo, /avatar, /poll",
+            value="/ping, /userinfo, /serverinfo, /avatar, /poll, /deadlocksearch, /deadlockprofile, /deadlockrecent",
             inline=False,
         )
         embed.add_field(

@@ -7,7 +7,7 @@ from discord import app_commands
 from discord.ext import commands
 from discord.errors import HTTPException, NotFound
 
-from musicbot.config import Settings
+from discordbot.config import Settings
 
 
 logging.basicConfig(
@@ -33,13 +33,15 @@ class FriendsBot(commands.Bot):
 
     async def setup_hook(self) -> None:
         for extension in (
-            "musicbot.cogs.general",
-            "musicbot.cogs.fun",
-            "musicbot.cogs.music",
+            "discordbot.cogs.general",
+            "discordbot.cogs.fun",
+            "discordbot.cogs.music",
+            "discordbot.cogs.deadlock",
         ):
             await self.load_extension(extension)
 
         dev_guild = discord.Object(id=DEV_GUILD_ID)
+        self.tree.clear_commands(guild=dev_guild)
         self.tree.copy_global_to(guild=dev_guild)
         await self.tree.sync(guild=dev_guild)
         logging.info("Slash commands synced to guild %s.", DEV_GUILD_ID)
